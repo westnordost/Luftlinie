@@ -1,0 +1,8 @@
+<resources>
+    <string name="title_destination">Wo willst Du hin?</string>
+    <string name="location_permission_denied">Du hast der App die Nutzung des Standortes verwehrt</string>
+    <string name="location_off">Standort ist aus</string>
+    <string name="location_waiting_for_fix">Warte auf GPS Standort</string>
+    <string name="turn_on_location_request">Standort ist aus. Jetzt in die Einstellungen gehen, um ihn anzuschalten?</string>
+    <string name="didnt_find_anything">Nichts gefunden 🙁</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.LinearLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:gravity="center_horizontal"
+    tools:orientation="vertical"
+    tools:background="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/locationStateImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="?attr/colorOnBackground"
+        android:src="@drawable/ic_location_disabled_black_240dp"/>
+
+    <TextView
+        android:id="@+id/locationStateDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/location_off"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        />
+
+</merge>

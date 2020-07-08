@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/destinationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36dp"
+        android:lines="2"
+        app:autoSizeMaxTextSize="36dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="@id/targetNeedleView"
+        app:layout_constraintStart_toStartOf="@id/targetNeedleView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="64dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        tools:text="Tierpark Hagenbeck, Hamburg"
+        tools:ignore="SpUsage" />
+
+    <ImageView
+        android:id="@+id/targetNeedleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_compass_needle_black_280dp"
+        android:tint="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/destinationTextView"
+        tools:rotation="60" />
+
+    <TextView
+        android:id="@+id/distanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="64dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/targetNeedleView"
+        app:layout_constraintStart_toStartOf="@id/targetNeedleView"
+        app:layout_constraintTop_toBottomOf="@id/targetNeedleView"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="64dp"
+        tools:text="102.4 km"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/inaccuracyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="36dp"
+        tools:text="+/- 60m"
+        tools:ignore="SpUsage"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/distanceTextView"
+        app:layout_constraintStart_toStartOf="@+id/distanceTextView"
+        app:layout_constraintTop_toBottomOf="@+id/distanceTextView"/>
+
+</merge>

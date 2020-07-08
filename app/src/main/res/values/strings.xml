@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">Luftlinie</string>
+    <string name="title_destination">Where will you go?</string>
+    <string name="location_permission_denied">Location permission denied</string>
+    <string name="location_off">Location is off</string>
+    <string name="location_waiting_for_fix">Waiting for GPS fix</string>
+    <string name="turn_on_location_request">Location is off. Open Settings to turn it on now?</string>
+    <string name="didnt_find_anything">Didn\'t find anything 🙁</string>
+</resources>
