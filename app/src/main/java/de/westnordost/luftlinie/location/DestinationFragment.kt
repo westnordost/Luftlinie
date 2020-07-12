@@ -85,7 +85,7 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
             createLocationAvailabilityIntentFilter()
         )
 
-        if (mainModel.locationState.value == SEARCHING) {
+        if (mainModel.locationState.value == SEARCHING || mainModel.locationState.value == UPDATING) {
             startLocationUpdates()
         }
     }
