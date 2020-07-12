@@ -152,7 +152,7 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
 
     @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
-        fineLocationManager.requestUpdates(1000, 1f)
+        fineLocationManager.requestUpdates(5000, 1f)
     }
 
     @SuppressLint("MissingPermission")
