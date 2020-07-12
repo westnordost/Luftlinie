@@ -1,0 +1,3 @@
+When you search for where you want to go, the request is sent to https://nominatim.openstreetmap.org/. This service is subject to the OpenStreetMap Foundation privacy policy, see https://wiki.osmfoundation.org/wiki/Privacy_Policy#Data_we_receive_automatically
+
+That's all.
