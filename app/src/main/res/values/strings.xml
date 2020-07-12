@@ -6,4 +6,5 @@
     <string name="location_waiting_for_fix">Waiting for GPS fix</string>
     <string name="turn_on_location_request">Location is off. Open Settings to turn it on now?</string>
     <string name="didnt_find_anything">Didn\'t find anything 🙁</string>
+    <string name="copyright">Search results © OpenStreetMap contributors</string>
 </resources>

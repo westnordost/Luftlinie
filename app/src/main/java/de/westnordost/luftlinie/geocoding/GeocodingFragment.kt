@@ -1,8 +1,11 @@
 package de.westnordost.luftlinie.geocoding
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +56,8 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
         model.isSearching.observe(viewLifecycleOwner, this::updateSearching)
         updateSearching(model.isSearching.value ?: false)
+
+        copyrightTextView.setOnClickListener { openUrl("https://www.openstreetmap.org/copyright") }
     }
 
     private fun setupResultsViewItemSpacing() {
@@ -70,8 +75,24 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
             birdImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                 topMargin = insets.systemWindowInsetTop + v.context.resources.getDimensionPixelSize(R.dimen.activity_margin)*2
             }
-            geocodeResultsView.setPadding(0,0,0, insets.systemWindowInsetBottom)
+            copyrightTextView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = insets.systemWindowInsetBottom
+            }
             insets
+        }
+    }
+
+    private fun openUrl(url: String): Boolean {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        return tryStartActivity(intent)
+    }
+
+    private fun tryStartActivity(intent: Intent): Boolean {
+        return try {
+            startActivity(intent)
+            true
+        } catch (e: ActivityNotFoundException) {
+            false
         }
     }
 
@@ -80,6 +101,7 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
     private fun updateResults(results: List<GeocodingResult>?) {
         geocodeNoResultsTextView.visibility = if (results != null && results.isEmpty()) View.VISIBLE else View.GONE
         geocodeResultsView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
+        copyrightTextView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
         birdImageView.visibility = if (results == null) View.VISIBLE else View.GONE
 
         if (results != null && !results.isEmpty()) {

@@ -53,8 +53,8 @@
         android:orientation="vertical"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputTextView"
+        app:layout_constraintBottom_toTopOf="@id/copyrightTextView"
+        app:layout_constraintTop_toBottomOf="@id/inputTextView"
         android:layoutAnimation="@anim/layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/row_geocode_result" />
@@ -71,5 +71,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTextView"
         tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/copyrightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright"
+        android:textAlignment="center"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

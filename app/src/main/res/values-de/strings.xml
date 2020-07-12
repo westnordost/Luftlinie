@@ -5,4 +5,5 @@
     <string name="location_waiting_for_fix">Warte auf GPS Standort</string>
     <string name="turn_on_location_request">Standort ist aus. Jetzt in die Einstellungen gehen, um ihn anzuschalten?</string>
     <string name="didnt_find_anything">Nichts gefunden 🙁</string>
+    <string name="copyright">Suchergebnisse © OpenStreetMap Mitwirkende</string>
 </resources>
