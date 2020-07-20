@@ -1,0 +1,3 @@
+Die App funktioniert so: Du gibt ein wo du hin willst, dann erscheint ein Pfeil der dich in die Richtung weist. Das ist alles.
+
+Wie gut die App für dich funktioniert hängt sehr von deinem Kompass-Sensor sowie dem Empfang deines GPS Empfängers ab.

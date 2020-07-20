@@ -1,0 +1,3 @@
+This app works like this: You input where you want to go, then an arrow points you into that direction, oblivious of any barriers or other obstacles. That's it!
+
+How well this app works for you very much depends on the compass sensor and the GPS reception on your phone.
