@@ -5,8 +5,8 @@ import android.location.Location
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import androidx.lifecycle.observe
+import de.westnordost.luftlinie.geocoding.GeocodingFragment
 import de.westnordost.luftlinie.location.DestinationFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -17,6 +17,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, GeocodingFragment())
+                .commit()
+        }
 
         mainModel.destinationLocation.observe(this, this::onNewDestination)
 
