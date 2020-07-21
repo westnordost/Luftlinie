@@ -1,3 +1,0 @@
-When you search for where you want to go, the request is sent to https://nominatim.openstreetmap.org/, a geocoding service hosted by the OpenStreetMap Foundation. The service is subject to the OpenStreetMap Foundation privacy policy, see https://wiki.osmfoundation.org/wiki/Privacy_Policy#Data_we_receive_automatically
-
-That's all. The app does neither share your location nor any other data with anyone.
