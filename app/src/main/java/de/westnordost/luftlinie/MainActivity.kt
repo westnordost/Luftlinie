@@ -5,10 +5,9 @@ import android.location.Location
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
 import de.westnordost.luftlinie.geocoding.GeocodingFragment
 import de.westnordost.luftlinie.location.DestinationFragment
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 

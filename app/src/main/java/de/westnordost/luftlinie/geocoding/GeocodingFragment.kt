@@ -13,7 +13,6 @@ import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
@@ -22,8 +21,8 @@ import de.westnordost.osmfeatures.FeatureDictionary
 import kotlinx.android.synthetic.main.row_geocode_result.view.*
 import kotlinx.android.synthetic.main.fragment_geocoding.*
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /** Fragment that manages the geocoding search and user selection of the correct result */
 class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {

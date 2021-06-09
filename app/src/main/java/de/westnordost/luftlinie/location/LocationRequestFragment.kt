@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /** Manages the process to ensure that the app can access the user's location. Two steps:
  *

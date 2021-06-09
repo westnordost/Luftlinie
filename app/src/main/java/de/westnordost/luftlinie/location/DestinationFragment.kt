@@ -8,13 +8,12 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
 import de.westnordost.luftlinie.location.LocationState.*
 import kotlinx.android.synthetic.main.fragment_destination.*
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
 
 class DestinationFragment : Fragment(R.layout.fragment_destination) {
