@@ -74,7 +74,7 @@ class Compass(
         accelerometer?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_UI, sensorHandler) }
         magnetometer?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_UI, sensorHandler) }
 
-        dispatcherThread = Thread(Runnable { dispatchLoop() }, "Compass Dispatcher Thread")
+        dispatcherThread = Thread({ dispatchLoop() }, "Compass Dispatcher Thread")
         dispatcherThread?.start()
     }
 

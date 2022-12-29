@@ -43,6 +43,7 @@ class LocationRequestFragment : Fragment() {
         outState.putBoolean("inProgress", inProgress)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (savedInstanceState != null) {
@@ -88,6 +89,7 @@ class LocationRequestFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         // must be for someone else...
         if (requestCode != LOCATION_PERMISSION_REQUEST) return
@@ -131,6 +133,7 @@ class LocationRequestFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         // must be for someone else...
         if (requestCode != LOCATION_TURN_ON_REQUEST) return

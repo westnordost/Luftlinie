@@ -50,6 +50,7 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
         if (childFragment is LocationRequestFragment) {
