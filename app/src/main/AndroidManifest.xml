@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.location.gps" android:required="true" />
@@ -18,7 +19,8 @@
         <activity
             android:name="de.westnordost.luftlinie.MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
+            tools:ignore="LockedOrientationActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
