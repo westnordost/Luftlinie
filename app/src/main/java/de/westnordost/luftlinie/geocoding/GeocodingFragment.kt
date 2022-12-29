@@ -16,10 +16,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
+import de.westnordost.luftlinie.databinding.FragmentGeocodingBinding
+import de.westnordost.luftlinie.databinding.RowGeocodeResultBinding
 import de.westnordost.luftlinie.view.SimpleRecyclerViewAdapter
 import de.westnordost.osmfeatures.FeatureDictionary
-import kotlinx.android.synthetic.main.row_geocode_result.view.*
-import kotlinx.android.synthetic.main.fragment_geocoding.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +29,7 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
     private val featureDictionary: FeatureDictionary by inject()
 
+    private lateinit var binding: FragmentGeocodingBinding
     private val model: GeocodingViewModel by viewModel()
     private val mainModel: MainViewModel by sharedViewModel()
 
@@ -36,12 +37,14 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentGeocodingBinding.bind(view)
 
         setupFittingToSystemWindowInsets()
 
         setupResultsViewItemSpacing()
 
-        inputTextView.setOnEditorActionListener { v, actionId, event ->
+
+        binding.inputTextView.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_NULL) {
                 model.search(v.text.toString().trim())
                 true
@@ -56,13 +59,13 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
         model.isSearching.observe(viewLifecycleOwner, this::updateSearching)
         updateSearching(model.isSearching.value ?: false)
 
-        copyrightTextView.setOnClickListener { openUrl("https://www.openstreetmap.org/copyright") }
+        binding.copyrightTextView.setOnClickListener { openUrl("https://www.openstreetmap.org/copyright") }
     }
 
     private fun setupResultsViewItemSpacing() {
         val xSpace = requireContext().resources.getDimensionPixelSize(R.dimen.activity_margin)
         val ySpace = requireContext().resources.getDimensionPixelSize(R.dimen.item_spacing)/2
-        geocodeResultsView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+        binding.geocodeResultsView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.set(xSpace, ySpace, xSpace, ySpace)
             }
@@ -71,10 +74,10 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
     private fun setupFittingToSystemWindowInsets() {
         view?.setOnApplyWindowInsetsListener { v: View, insets: WindowInsets ->
-            birdImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+            binding.birdImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                 topMargin = insets.systemWindowInsetTop + v.context.resources.getDimensionPixelSize(R.dimen.activity_margin)*2
             }
-            copyrightTextView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+            binding.copyrightTextView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                 bottomMargin = insets.systemWindowInsetBottom
             }
             insets
@@ -98,37 +101,38 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
     /* -------------------------------------- View updates -------------------------------------- */
 
     private fun updateResults(results: List<GeocodingResult>?) {
-        geocodeNoResultsTextView.visibility = if (results != null && results.isEmpty()) View.VISIBLE else View.GONE
-        geocodeResultsView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
-        copyrightTextView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
-        birdImageView.visibility = if (results == null) View.VISIBLE else View.GONE
+        binding.geocodeNoResultsTextView.visibility = if (results != null && results.isEmpty()) View.VISIBLE else View.GONE
+        binding.geocodeResultsView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
+        binding.copyrightTextView.visibility = if (results != null && !results.isEmpty()) View.VISIBLE else View.GONE
+        binding.birdImageView.visibility = if (results == null) View.VISIBLE else View.GONE
 
         if (results != null && !results.isEmpty()) {
-            geocodeResultsView.adapter = object : SimpleRecyclerViewAdapter(R.layout.row_geocode_result) {
+            binding.geocodeResultsView.adapter = object : SimpleRecyclerViewAdapter(R.layout.row_geocode_result) {
 
                 override fun getItemCount(): Int = results.size
 
                 override fun onBindView(view: View, position: Int) {
                     val result = results[position]
-                    view.resultTextView.text = result.displayName
-                    view.resultTypeTextView.text = getFeatureName(result.key to result.value)
+                    val binding = RowGeocodeResultBinding.bind(view)
+                    binding.resultTextView.text = result.displayName
+                    binding.resultTypeTextView.text = getFeatureName(result.key to result.value)
                     if (position == 0) {
-                        view.resultTextView.setTypeface(null, Typeface.BOLD)
+                        binding.resultTextView.setTypeface(null, Typeface.BOLD)
                     }
-                    view.setOnClickListener { onClickedResult(result) }
+                    binding.root.setOnClickListener { onClickedResult(result) }
                 }
             }
-            geocodeResultsView.scheduleLayoutAnimation()
+            binding.geocodeResultsView.scheduleLayoutAnimation()
         }
     }
 
     private fun updateSearching(searching: Boolean) {
         if (searching) {
-            progressBar.show()
-            inputTextView.isEnabled = false
+            binding.progressBar.show()
+            binding.inputTextView.isEnabled = false
         } else {
-            progressBar.hide()
-            inputTextView.isEnabled = true
+            binding.progressBar.hide()
+            binding.inputTextView.isEnabled = true
         }
     }
 

@@ -10,8 +10,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
+import de.westnordost.luftlinie.databinding.FragmentDestinationBinding
 import de.westnordost.luftlinie.location.LocationState.*
-import kotlinx.android.synthetic.main.fragment_destination.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
@@ -21,6 +21,8 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
     private val mainModel: MainViewModel by sharedViewModel()
     private val fineLocationManager: FineLocationManager by inject { parametersOf(this::onLocationUpdate) }
     private val compass: Compass by inject { parametersOf(this::onCompassUpdate) }
+
+    private lateinit var binding: FragmentDestinationBinding
 
     private val locationRequestFragment: LocationRequestFragment? get() =
         childFragmentManager.findFragmentByTag("LocationRequestFragment") as LocationRequestFragment?
@@ -62,8 +64,9 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentDestinationBinding.bind(view)
 
-        locationStateView.setOnClickListener {
+        binding.locationStateView.setOnClickListener {
             locationRequestFragment?.startRequest()
         }
 
@@ -101,7 +104,7 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
     }
 
     private fun onCompassUpdate(rotation: Float, tilt: Float) {
-        destinationPointerView.deviceRotation = rotation
+        binding.destinationPointerView.deviceRotation = rotation
     }
 
     private fun onLocationUpdate(location: Location) {
@@ -130,24 +133,24 @@ class DestinationFragment : Fragment(R.layout.fragment_destination) {
     /* -------------------------------------- View updates -------------------------------------- */
 
     private fun updateCurrentLocation(location: Location?) {
-        destinationPointerView.currentLocation = location
+        binding.destinationPointerView.currentLocation = location
     }
 
     private fun updateDestinationLocation(location: Location?) {
-        destinationPointerView.destinationLocation = location
+        binding.destinationPointerView.destinationLocation = location
     }
 
     private fun updateLocationState(locationState: LocationState?) {
         if (locationState != null) {
-            locationStateView.state = locationState
-            locationStateView.visibility = if (locationState == UPDATING) View.INVISIBLE else View.VISIBLE
-            locationStateView.isClickable = !locationState.isEnabled
+            binding.locationStateView.state = locationState
+            binding.locationStateView.visibility = if (locationState == UPDATING) View.INVISIBLE else View.VISIBLE
+            binding.locationStateView.isClickable = !locationState.isEnabled
         } else {
-            locationStateView.visibility = View.INVISIBLE
-            locationStateView.isClickable = false
+            binding.locationStateView.visibility = View.INVISIBLE
+            binding.locationStateView.isClickable = false
         }
 
-        destinationPointerView.visibility = if (locationState == UPDATING) View.VISIBLE else View.INVISIBLE
+        binding.destinationPointerView.visibility = if (locationState == UPDATING) View.VISIBLE else View.INVISIBLE
     }
 
     @SuppressLint("MissingPermission")

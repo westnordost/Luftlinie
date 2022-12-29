@@ -5,10 +5,11 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.location.Location
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.westnordost.luftlinie.R
-import kotlinx.android.synthetic.main.widget_destination_pointer.view.*
+import de.westnordost.luftlinie.databinding.WidgetDestinationPointerBinding
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -18,6 +19,7 @@ class DestinationPointerView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    private val binding = WidgetDestinationPointerBinding.inflate(LayoutInflater.from(context), this)
     private val rnd = Random()
 
     var currentLocation: Location? = null
@@ -26,7 +28,7 @@ class DestinationPointerView @JvmOverloads constructor(
             // TODO only for debugging
             val h = rnd.nextFloat() * 360f
             val color: Int = Color.HSVToColor(floatArrayOf(h, 0.75f, 1f))
-            targetNeedleView.imageTintList = ColorStateList.valueOf(color)
+            binding.targetNeedleView.imageTintList = ColorStateList.valueOf(color)
             update()
         }
     var destinationLocation: Location? = null
@@ -40,30 +42,26 @@ class DestinationPointerView @JvmOverloads constructor(
             update()
         }
 
-    init {
-        inflate(context,
-            R.layout.widget_destination_pointer, this)
-    }
 
     private fun update() {
         val start = currentLocation ?: return
         val destination = destinationLocation ?: return
         val bearing = start.bearingTo(destination)
-        targetNeedleView.rotation = bearing - deviceRotation
+        binding.targetNeedleView.rotation = bearing - deviceRotation
 
         val dist = start.distanceTo(destination)
-        distanceTextView.text = dist.toDisplayDistance()
+        binding.distanceTextView.text = dist.toDisplayDistance()
 
         val inaccuracy = start.accuracy + destination.accuracy
         val inaccuracyIsRelevant = inaccuracy / dist >= 0.333
-        inaccuracyTextView.visibility = if (inaccuracyIsRelevant) View.VISIBLE else View.INVISIBLE
-        inaccuracyTextView.text = "+/- " + inaccuracy.toDisplayDistance()
+        binding.inaccuracyTextView.visibility = if (inaccuracyIsRelevant) View.VISIBLE else View.INVISIBLE
+        binding.inaccuracyTextView.text = "+/- " + inaccuracy.toDisplayDistance()
 
         val drawable = context.getDrawable(
             if (dist <= inaccuracy) R.drawable.ic_circle_black_240dp
             else R.drawable.ic_compass_needle_black_280dp
         )
-        targetNeedleView.setImageDrawable(drawable)
+        binding.targetNeedleView.setImageDrawable(drawable)
     }
 }
 

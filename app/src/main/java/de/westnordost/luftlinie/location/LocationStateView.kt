@@ -7,16 +7,19 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import de.westnordost.luftlinie.R
+import de.westnordost.luftlinie.databinding.WidgetLocationStateBinding
 import de.westnordost.luftlinie.location.LocationState.*
-import kotlinx.android.synthetic.main.widget_location_state.view.*
 
 class LocationStateView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
+
+    private val binding = WidgetLocationStateBinding.inflate(LayoutInflater.from(context), this)
 
     init {
         inflate(context, R.layout.widget_location_state, this)
@@ -32,15 +35,15 @@ class LocationStateView @JvmOverloads constructor(
     set(value) {
         field = value
         val drawable = context.getDrawable(value.imageResId)
-        locationStateImageView.setImageDrawable(drawable)
+        binding.locationStateImageView.setImageDrawable(drawable)
         if (drawable is Animatable) {
             if(!drawable.isRunning) drawable.start()
         }
         val textResId = value.descriptionResId
         if (textResId != 0) {
-            locationStateDescriptionView.setText(textResId)
+            binding.locationStateDescriptionView.setText(textResId)
         } else {
-            locationStateDescriptionView.text = null
+            binding.locationStateDescriptionView.text = null
         }
     }
 
