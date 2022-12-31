@@ -19,8 +19,8 @@ android {
         applicationId = "de.westnordost.luftlinie"
         minSdk = 21
         targetSdk = 33
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
     }
 
     buildTypes {
@@ -38,11 +38,13 @@ android {
 }
 
 dependencies {
+    val kotlinxCoroutinesVersion = "1.6.4"
+
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.21")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion")
 
     // Android widgets
     implementation("androidx.appcompat:appcompat:1.5.1")
@@ -61,8 +63,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     // JSON parsing
-    implementation("com.squareup.moshi:moshi:1.9.3")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.9.3")
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
 
     // Dependency injection
     implementation("io.insert-koin:koin-core:3.3.2")
