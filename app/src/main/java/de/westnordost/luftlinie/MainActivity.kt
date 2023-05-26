@@ -7,6 +7,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import de.westnordost.luftlinie.geocoding.GeocodingFragment
 import de.westnordost.luftlinie.location.DestinationFragment
+import de.westnordost.luftlinie.location.parseGeoUri
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -33,19 +34,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleGeoUri() {
-        if (Intent.ACTION_VIEW != intent.action) return
+        if (intent.action != Intent.ACTION_VIEW) return
         val data = intent.data ?: return
-        if (data.scheme != "geo" ) return
-        val geoUriRegex = Regex("(-?[0-9]*\\.?[0-9]+),(-?[0-9]*\\.?[0-9]+).*")
-        val match = geoUriRegex.matchEntire(data.schemeSpecificPart) ?: return
-        val lat = match.groupValues[1].toDoubleOrNull() ?: return
-        if (lat < -90 || lat > +90) return
-        val lon = match.groupValues[2].toDoubleOrNull() ?: return
-        if (lon < -180 && lon > +180) return
-
+        if ("geo" != data.scheme) return
+        val geo = parseGeoUri(data) ?: return
         mainModel.destinationLocation.value = Location(null as String?).apply {
-            longitude = lon
-            latitude = lat
+            longitude = geo.longitude
+            latitude = geo.latitude
         }
     }
 
