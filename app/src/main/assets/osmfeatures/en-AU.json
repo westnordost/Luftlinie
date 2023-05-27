@@ -9,6 +9,9 @@
                 "brewery": {
                     "label": "Draught Beers"
                 },
+                "building/flats": {
+                    "label": "Unit Count"
+                },
                 "capacity_volume": {
                     "label": "Capacity (Cubic Metres)"
                 },
@@ -47,9 +50,6 @@
                     }
                 },
                 "ele": {
-                    "label": "Elevation (Metres)"
-                },
-                "ele_node": {
                     "label": "Elevation (Metres)"
                 },
                 "fax": {
@@ -119,6 +119,9 @@
                 "aerialway/zip_line": {
                     "name": "Flying Fox"
                 },
+                "aeroway/jet_bridge": {
+                    "name": "Aerobridge"
+                },
                 "amenity/arts_centre": {
                     "name": "Arts Centre"
                 },
@@ -159,7 +162,8 @@
                     "aliases": "Petrol Station"
                 },
                 "amenity/parking": {
-                    "name": "Car Park"
+                    "name": "Car Park",
+                    "aliases": "Parking Lot"
                 },
                 "amenity/parking/multi-storey": {
                     "name": "Multistorey Car Park"
@@ -169,7 +173,7 @@
                     "aliases": "Commuter Car Park"
                 },
                 "amenity/parking_entrance": {
-                    "name": "Carpark Building Entrance / Exit"
+                    "name": "Car Park Building Entrance / Exit"
                 },
                 "amenity/payment_centre": {
                     "name": "Payment Centre"
@@ -238,15 +242,6 @@
                 "healthcare/counselling": {
                     "name": "Counselling Centre"
                 },
-                "highway/crossing/marked": {
-                    "name": "Marked Crossing"
-                },
-                "highway/crossing/uncontrolled": {
-                    "name": "Marked Crossing"
-                },
-                "highway/crossing/zebra": {
-                    "name": "Marked Crossing"
-                },
                 "highway/cycleway/bicycle_foot": {
                     "name": "Shared Path"
                 },
@@ -281,6 +276,11 @@
                 "highway/street_lamp": {
                     "name": "Street Light",
                     "terms": "streetlamp,street lamp,lamp,light,gaslight"
+                },
+                "highway/track": {
+                    "name": "Track / Land-Access Road",
+                    "terms": "fire trail",
+                    "aliases": "Fire Trail"
                 },
                 "highway/traffic_signals": {
                     "name": "Traffic Lights"
