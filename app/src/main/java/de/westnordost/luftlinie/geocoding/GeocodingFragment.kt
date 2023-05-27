@@ -18,6 +18,7 @@ import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
 import de.westnordost.luftlinie.databinding.FragmentGeocodingBinding
 import de.westnordost.luftlinie.databinding.RowGeocodeResultBinding
+import de.westnordost.luftlinie.location.parseLatLon
 import de.westnordost.luftlinie.view.SimpleRecyclerViewAdapter
 import de.westnordost.osmfeatures.FeatureDictionary
 import org.koin.android.ext.android.inject
@@ -43,10 +44,9 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
         setupResultsViewItemSpacing()
 
-
         binding.inputTextView.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_NULL) {
-                model.search(v.text.toString().trim())
+                search(v.text.toString().trim())
                 true
             } else {
                 false
@@ -60,6 +60,18 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
         updateSearching(model.isSearching.value ?: false)
 
         binding.copyrightTextView.setOnClickListener { openUrl("https://www.openstreetmap.org/copyright") }
+    }
+
+    private fun search(text: String) {
+        val lngLat = parseLatLon(text)
+        if (lngLat != null) {
+            mainModel.destinationLocation.value = Location(null as String?).apply {
+                longitude = lngLat.longitude
+                latitude = lngLat.latitude
+            }
+        } else {
+            model.search(text)
+        }
     }
 
     private fun setupResultsViewItemSpacing() {
