@@ -73,7 +73,7 @@ dependencies {
 val bcp47ExportLanguages = setOf(
     "de","en","en-AU","en-GB"
 )
-val presetsVersion = "v5.1.1"
+val presetsVersion = "v6.2.0"
 
 tasks.register<UpdatePresetsTask>("updatePresets") {
     group = "luftlinie"
