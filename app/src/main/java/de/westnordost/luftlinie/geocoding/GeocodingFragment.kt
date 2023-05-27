@@ -24,6 +24,7 @@ import de.westnordost.osmfeatures.FeatureDictionary
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 /** Fragment that manages the geocoding search and user selection of the correct result */
 class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
@@ -149,7 +150,11 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
     }
 
     private fun getFeatureName(tag: Pair<String, String>): String? =
-        featureDictionary.byTags(mapOf(tag)).find().firstOrNull()?.name
+        featureDictionary.byTags(mapOf(tag))
+            .forLocale(Locale.getDefault(), Locale.ENGLISH, null)
+            .find()
+            .firstOrNull()
+            ?.name
 
     private fun onClickedResult(result: GeocodingResult) {
         mainModel.destinationLocation.value = Location(null as String?).apply {
