@@ -22,7 +22,6 @@ class LocationStateView @JvmOverloads constructor(
     private val binding = WidgetLocationStateBinding.inflate(LayoutInflater.from(context), this)
 
     init {
-        inflate(context, R.layout.widget_location_state, this)
         orientation = VERTICAL
         gravity = Gravity.CENTER_HORIZONTAL
 
