@@ -37,11 +37,8 @@ class MainActivity : AppCompatActivity() {
         if (intent.action != Intent.ACTION_VIEW) return
         val data = intent.data ?: return
         if ("geo" != data.scheme) return
-        val geo = parseGeoUri(data) ?: return
-        mainModel.destinationLocation.value = Location(null as String?).apply {
-            longitude = geo.longitude
-            latitude = geo.latitude
-        }
+        val location = parseGeoUri(data) ?: return
+        mainModel.destinationLocation.value = location
     }
 
     private fun onNewDestination(location: Location?) {

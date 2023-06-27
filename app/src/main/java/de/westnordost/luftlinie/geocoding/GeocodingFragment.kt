@@ -18,7 +18,7 @@ import de.westnordost.luftlinie.MainViewModel
 import de.westnordost.luftlinie.R
 import de.westnordost.luftlinie.databinding.FragmentGeocodingBinding
 import de.westnordost.luftlinie.databinding.RowGeocodeResultBinding
-import de.westnordost.luftlinie.location.parseLatLon
+import de.westnordost.luftlinie.location.parseLocation
 import de.westnordost.luftlinie.view.SimpleRecyclerViewAdapter
 import de.westnordost.osmfeatures.FeatureDictionary
 import org.koin.android.ext.android.inject
@@ -64,12 +64,9 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
     }
 
     private fun search(text: String) {
-        val lngLat = parseLatLon(text)
-        if (lngLat != null) {
-            mainModel.destinationLocation.value = Location(null as String?).apply {
-                longitude = lngLat.longitude
-                latitude = lngLat.latitude
-            }
+        val location = parseLocation(text)
+        if (location != null) {
+            mainModel.destinationLocation.value = location
         } else {
             model.search(text)
         }
