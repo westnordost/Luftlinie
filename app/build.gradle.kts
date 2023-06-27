@@ -62,12 +62,12 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     // JSON parsing
-    implementation("com.squareup.moshi:moshi:1.14.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+    implementation("com.squareup.moshi:moshi:1.15.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
 
     // Dependency injection
-    implementation("io.insert-koin:koin-core:3.4.1")
-    implementation("io.insert-koin:koin-android:3.4.1")
+    implementation("io.insert-koin:koin-core:3.4.2")
+    implementation("io.insert-koin:koin-android:3.4.2")
 }
 
 val bcp47ExportLanguages = setOf(
