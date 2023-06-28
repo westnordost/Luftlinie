@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp").version("1.8.22-1.0.11")
 }
 
 android {
@@ -63,7 +63,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     // JSON parsing
     implementation("com.squareup.moshi:moshi:1.15.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
 
     // Dependency injection
     implementation("io.insert-koin:koin-core:3.4.2")
@@ -73,7 +73,7 @@ dependencies {
 val bcp47ExportLanguages = setOf(
     "de","en","en-AU","en-GB"
 )
-val presetsVersion = "v6.2.0"
+val presetsVersion = "v6.3.0"
 
 tasks.register<UpdatePresetsTask>("updatePresets") {
     group = "luftlinie"

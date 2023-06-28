@@ -1,6 +1,5 @@
 package de.westnordost.luftlinie.geocoding
 
-import de.westnordost.luftlinie.location.LngLat
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -33,7 +32,8 @@ class NominatimGeocoder(
         return service.search(query, locale?.language, limit).await().map {
             GeocodingResult(
                 it.display_name,
-                LngLat(it.lon.toDouble(), it.lat.toDouble()),
+                it.lat.toDouble(),
+                it.lon.toDouble(),
                 it.importance,
                 it.`class`,
                 it.type

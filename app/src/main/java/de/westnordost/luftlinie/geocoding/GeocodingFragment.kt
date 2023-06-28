@@ -155,8 +155,8 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
     private fun onClickedResult(result: GeocodingResult) {
         mainModel.destinationLocation.value = Location(null as String?).apply {
-            longitude = result.position.longitude
-            latitude = result.position.latitude
+            longitude = result.longitude
+            latitude = result.latitude
         }
     }
 }
