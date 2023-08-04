@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_destination">Nereye gideceksiniz?</string>
+    <string name="location_permission_denied">Konum izni reddedildi</string>
+    <string name="location_off">Konum kapalı</string>
+    <string name="location_waiting_for_fix">GPS düzeltmesi bekleniyor</string>
+    <string name="turn_on_location_request">Konum kapalı. Açmak için şimdi Ayarlara gidilsin mi?</string>
+    <string name="didnt_find_anything">Hiçbir şey bulunamadı 🙁</string>
+    <string name="copyright">Arama sonuçları © OpenStreetMap katkıcıları</string>
+</resources>
