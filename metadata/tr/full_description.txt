@@ -1,0 +1,3 @@
+Uygulama şu şekilde çalışır: Nereye gitmek istediğinizi girersiniz, sonra bir ok sizi o yöne doğru yönlendirir, sizi engelleyecek herhangi bir şeyi dikkate almaz. Bu kadar!
+
+Uygulamanın ne kadar iyi çalışacağı büyük ölçüde telefonunuzdaki pusula sensörüne ve GPS alımına bağlıdır.
