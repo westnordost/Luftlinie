@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -59,6 +60,8 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
 
         model.isSearching.observe(viewLifecycleOwner, this::updateSearching)
         updateSearching(model.isSearching.value ?: false)
+
+        model.lastError.observe(viewLifecycleOwner, this::showError)
 
         binding.copyrightTextView.setOnClickListener { openUrl("https://www.openstreetmap.org/copyright") }
     }
@@ -143,6 +146,12 @@ class GeocodingFragment : Fragment(R.layout.fragment_geocoding) {
         } else {
             binding.progressBar.hide()
             binding.inputTextView.isEnabled = true
+        }
+    }
+
+    private fun showError(error: String?) {
+        if (error != null) {
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
     }
 
