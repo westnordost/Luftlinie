@@ -8,6 +8,9 @@
 # Retrofit does reflection on method and parameter annotations.
 -keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 
+# Keep annotation default values (e.g., retrofit2.http.Field.encoded).
+-keepattributes AnnotationDefault
+
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
@@ -31,6 +34,22 @@
 -if interface * { @retrofit2.http.* <methods>; }
 -keep,allowobfuscation interface <1>
 
+# Keep inherited services.
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface * extends <1>
+
+# With R8 full mode generic signatures are stripped for classes that are not
+# kept. Suspend functions are wrapped in continuations where the type argument
+# is used.
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+# R8 full mode strips generic signatures from return types if not kept.
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+
+# With R8 full mode generic signatures are stripped for classes that are not kept.
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+
 # https://github.com/square/moshi/blob/master/moshi/src/main/resources/META-INF/proguard/moshi.pro
 # ------------------------------------------------------------------------------------------------
 
@@ -41,7 +60,7 @@
     @com.squareup.moshi.* <methods>;
 }
 
--keep @com.squareup.moshi.JsonQualifier interface *
+-keep @com.squareup.moshi.JsonQualifier @interface *
 
 # Enum field names are used by the integrated EnumJsonAdapter.
 # values() is synthesized by the Kotlin compiler and is used by EnumJsonAdapter indirectly
@@ -51,11 +70,13 @@
     **[] values();
 }
 
-# https://github.com/square/moshi/blob/master/kotlin/reflect/src/main/resources/META-INF/proguard/moshi-kotlin.pro
-# ------------------------------------------------------------------------------------------------
+# Keep helper method to avoid R8 optimisation that would keep all Kotlin Metadata when unwanted
+-keepclassmembers class com.squareup.moshi.internal.Util {
+    private static java.lang.String getKotlinMetadataClassName();
+}
 
--keep class kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoaderImpl
-
--keepclassmembers class kotlin.Metadata {
-    public <methods>;
+# Keep ToJson/FromJson-annotated methods
+-keepclassmembers class * {
+  @com.squareup.moshi.FromJson <methods>;
+  @com.squareup.moshi.ToJson <methods>;
 }

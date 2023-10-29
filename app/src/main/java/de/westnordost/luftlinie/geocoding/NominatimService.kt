@@ -1,5 +1,6 @@
 package de.westnordost.luftlinie.geocoding
 
+import androidx.annotation.Keep
 import com.squareup.moshi.JsonClass
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface NominatimService {
     ): Call<List<GeocodingResultJson>>
 }
 
-@JsonClass(generateAdapter = true)
+@Keep @JsonClass(generateAdapter = true)
 data class GeocodingResultJson(
     val display_name: String,
     val lat: String,
